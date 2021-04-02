@@ -20,7 +20,9 @@ import optparse
 from threading import *
 import random
 from termcolor import colored
+from flask import Flask , render_template
 
+app=Flask(__name__)
 
 class CaeserCipher:
     def __init__(self, text, s):
@@ -126,8 +128,46 @@ class PortScanner:
 
 
 
-    # def main(self):
-        
+# -----------------------------------------------------------------------------------------
+
+# Web application
+
+
+@app.route('/')
+def help():
+    return render_template('index.html')
+
+@app.route('/portScanner')
+def portScanner():
+    return render_template('portScanner.html')
+
+@app.route('/arpSpoofer')
+def arpSpoofer():
+    return render_template('arpSpoofer.html')
+    
+@app.route('/macSpoofer')
+def macSpoofer():
+    return render_template('macSpoofer.html')
+
+@app.route('/passGenerator')
+def passGenerator():
+    return render_template('passGenerator.html')
+
+@app.route('/caesercipher')
+def caesercipher():
+    return render_template('caesercipher.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+# -----------------------------------------------------------------------------------------
+
 
 
 if __name__ == "__main__":
@@ -188,6 +228,10 @@ if __name__ == "__main__":
                 print(colored(f"[-] Failed to change mac address to {newMACadd} ","red"))
             else:
                 print(colored(f"[+] MAC address changed to {newMACadd} on interface {interface} ","blue"))
+            
+        elif fPlace=='help':
+            app.run(host="127.0.0.1", port=8080, debug=True)
+
         
         else:
             print("csmap -c <text> -k <key> \ncsmap -s <length of password>\ncsmap -p <port no.> <ip address> ")
@@ -199,21 +243,3 @@ if __name__ == "__main__":
 
 
 
-
-# may be i will use it later
-        # parser.add_argument('-m', type=str,
-        #                     default=None,
-        #                     help='csmap -c <text> <key> ')
-        # parser.add_argument('-a', type=str,
-        #                     default=None,
-        #                     help='csmap -c <text> <key> ')
-        
-# parser.add_argument('-p', type=str,
-            #                     default=None,
-            #                     help='csmap -p <port no.> ')
-            # parser.add_argument('ipadd', type=str,
-            #                     default=None,
-            #                     help='csmap -p <port no.> <ip address> ')
-            # args = parser.parse_args()
-
-            # PortScanner(args.p,args.ipadd)

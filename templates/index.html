@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block head %} 
+
+{{ super() }}
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Yatra+One&display=swap" rel="stylesheet"> 
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 95%;
+  }
+
+  body {
+    background: black;
+    /* font-family: "Montserrat", sans-serif; */
+    font-family: "Montsrrat", sans-serif;
+  }
+  .scontainer {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    border: 2px solid red;
+  }
+
+  .mainH{
+    display: flex;
+    /* border: 2px solid red; */
+    justify-content: center;
+    padding-top: 1rem;
+    font-family: 'Press Start 2P', cursive; 
+    color: rgb(7, 36, 7);
+    font-size: 10rem;
+    margin-bottom: 50%;
+    background: white;
+  }
+
+  .cardcontainer{
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 2px solid blue; */
+    justify-content: space-around;
+
+  }
+  .card{
+    display: flex;
+    align-self: center; 
+    padding: 2rem;
+    /* border: 2px solid green; */
+    margin: 1rem;
+  }
+
+</style>
+
+{% endblock %} {% block body %}
+
+<div class="scontainer">
+  <h1 class="mainH">CSMAP</h1>
+
+
+<div class="cardcontainer">
+  <div class="card" style="width: 30rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Caeser Cipher</h5>
+      <p class="card-text">A Caeser Cipher tool and the documentation.</p>
+      <a href="./caesercipher" class="btn btn-primary">Click here...</a>
+    </div>
+  </div>
+
+  <div class="card" style="width: 30rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Mac Spoofer</h5>
+      <p class="card-text">Mac Spoofer documentation</p>
+      <a href="./macSpoofer" class="btn btn-primary">Click here...</a>
+    </div>
+  </div>
+
+  <div class="card" style="width: 30rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">ARP Spoofer</h5>
+      <p class="card-text">ARP Spoofer documentation</p>
+      <a href="./arpSpoofer" class="btn btn-primary">Click here...</a>
+    </div>
+  </div>
+
+  <div class="card" style="width: 30rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Port Scanner</h5>
+      <p class="card-text">Port Scanner documentation</p>
+      <a href="./portScanner" class="btn btn-primary">Click here...</a>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}
