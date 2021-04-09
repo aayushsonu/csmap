@@ -1,33 +1,67 @@
-{% extends "layout.html" %} 
-{% block head %} 
-{{ super() }} 
-
+{% extends "layout.html" %} {% block head %} {{ super() }}
 
 <style>
-
-.mainH{
-  font-style: italic;
-  font-weight: 700;
-}
-
+  .mainH {
+    font-style: italic;
+    font-weight: 700;
+  }
 </style>
 
-
-{% endblock %}
-{% block body %}
-
-
+{% endblock %} {% block body %}
 
 <header class="mainH">Caeser Cipher</header>
 
-<div class="scontainer">
+<div class="scontainer text-light">
 
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt aliquid quae fugit? Molestias eaque dolore ratione non magnam dignissimos repellendus rem, laboriosam maiores tempore, voluptate deserunt labore iusto recusandae praesentium minus sed. Velit illum id rerum, deleniti fugiat vel aspernatur expedita aliquid quaerat pariatur distinctio, quia optio? Quidem non sequi nam sapiente delectus, magni atque ratione porro explicabo? In doloremque vitae sint dolorem possimus iusto impedit eveniet natus inventore soluta reprehenderit aliquam fugiat voluptate provident neque reiciendis, quia quam commodi modi earum consequatur nemo? Reiciendis iusto consequuntur expedita, totam facilis quibusdam molestias fugiat adipisci maiores, hic fugit esse cum suscipit? Sapiente exercitationem rem fugit, numquam autem architecto, consectetur iusto officiis minima dolorem dignissimos? Perspiciatis modi, vel praesentium eius dolor totam odit nulla culpa non cupiditate iste, itaque vero. Cumque, ipsum aliquid. Facilis dolorum laboriosam, ducimus corrupti maiores officia quasi, magni, autem impedit saepe iste laudantium aliquam reprehenderit molestiae commodi facere expedita vitae ratione! Blanditiis nihil adipisci reiciendis, veniam ratione quia? Soluta harum aperiam tempore quos eaque natus laudantium consequuntur odit et labore veniam corrupti fuga repudiandae omnis ex repellat, quidem, laboriosam consectetur? Mollitia tempora nesciunt qui aliquam accusantium placeat rerum necessitatibus, doloremque voluptatem aperiam culpa autem id blanditiis tempore atque deleniti, doloribus in iusto natus cum modi! Quis ullam, nostrum voluptatum nesciunt odio dolor provident magnam ea, eaque sint repellendus quisquam deserunt at est. Eaque hic dicta id quia sed tempora quisquam quo atque at cumque ab pariatur molestias, eos veniam praesentium mollitia quidem numquam aspernatur temporibus repellat eius molestiae ad iure. Veniam totam architecto ea quia natus quas ducimus tempora. Soluta rerum aut beatae deserunt? Aut corporis commodi expedita nam dolorum? Doloribus corrupti excepturi sit non? Numquam explicabo autem veritatis in error reiciendis sapiente sequi, cumque reprehenderit perferendis ea, quos recusandae officia quas nostrum quisquam! Ipsam, odio reiciendis. Deserunt.</p>
 
+  {% block div %} {% endblock%}
+
+
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt aliquid
+    quae fugit? Molestias eaque dolore ratione non magnam dignissimos
+    repellendus rem, laboriosam maiores tempore, voluptate deserunt labore iusto
+    recusandae praesentium minus sed. Velit illum id rerum, deleniti fugiat vel
+    aspernatur expedita aliquid quaerat pariatur distinctio, quia optio? Quidem
+    non sequi nam sapiente delectus, magni atque ratione porro explicabo? In
+    doloremque vitae sint dolorem possimus iusto impedit eveniet natus inventore
+    soluta reprehenderit aliquam fugiat voluptate provident neque reiciendis,
+    quia quam commodi modi earum consequatur nemo? Reiciendis iusto consequuntur
+    expedita, totam facilis quibusdam molestias fugiat adipisci maiores, hic
+    fugit esse cum suscipit? Sapiente exercitationem rem fugit, numquam autem
+    architecto, consectetur iusto officiis minima dolorem dignissimos?
+    Perspiciatis modi, vel praesentium eius dolor totam odit nulla culpa non
+    cupiditate iste, itaque vero. Cumque, ipsum aliquid. Facilis dolorum
+    laboriosam, ducimus corrupti maiores officia quasi, magni, autem impedit
+    saepe iste laudantium aliquam reprehenderit molestiae commodi facere
+    expedita vitae ratione! Blanditiis nihil adipisci reiciendis, veniam ratione
+    quia? Soluta harum aperiam tempore quos eaque natus laudantium consequuntur
+    odit et labore veniam corrupti fuga repudiandae omnis ex repellat, quidem,
+    laboriosam consectetur? Mollitia tempora nesciunt qui aliquam accusantium
+    placeat rerum necessitatibus, doloremque voluptatem aperiam culpa autem id
+    blanditiis tempore atque deleniti, doloribus in iusto natus cum modi! Quis
+    ullam, nostrum voluptatum nesciunt odio dolor provident magnam ea, eaque
+    sint repellendus quisquam deserunt at est. Eaque hic dicta id quia sed
+    tempora quisquam quo atque at cumque ab pariatur molestias, eos veniam
+    praesentium mollitia quidem numquam aspernatur temporibus repellat eius
+    molestiae ad iure. Veniam totam architecto ea quia natus quas ducimus
+    tempora. Soluta rerum aut beatae deserunt? Aut corporis commodi expedita nam
+    dolorum? Doloribus corrupti excepturi sit non? Numquam explicabo autem
+    veritatis in error reiciendis sapiente sequi, cumque reprehenderit
+    perferendis ea, quos recusandae officia quas nostrum quisquam! Ipsam, odio
+    reiciendis. Deserunt.
+  </p>
 </div>
 
+{% endblock %}
 
+{% block html %}
 
-
+<script>
+  function resetFun() {
+    document.getElementById("cc-form").reset();
+  }
+</script>
 
 {% endblock %}
+

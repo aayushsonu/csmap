@@ -4,4 +4,29 @@
 
 <h1>Contact PAGE</h1>
 
+<table class="table" style="background-color: aliceblue;">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">DateTime</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for query in allQuery %}
+        <tr>
+          <!-- <th scope="row"> {{query.sid}} </th> -->
+          <th scope="row"> {{loop.index}} </th>
+          <td>{{query.title}}</td>
+          <td>{{query.content}}</td>
+          <td>{{query.date_created}}</td>
+        </tr>
+        {% endfor %}
+
+        <p>{{allQuery[1]}}</p>
+     
+    </tbody>
+  </table>
+
 {% endblock %}

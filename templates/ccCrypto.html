@@ -1,0 +1,69 @@
+{% extends "caesercipher.html" %}
+
+{% block div %}
+
+
+{% if endpoint=='encrypt' %}
+<h2>Encryption</h2>
+
+{% else %}  
+<h2>Decryption</h2>
+
+{% endif %}
+
+
+<div class="cipherF">
+    <form id="cc-form" method="POST">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Text</label>
+        <input
+          type="text"
+          class="form-control"
+          id="formGroupExampleInput"
+          placeholder="Main text"
+          name="text"
+          
+          {% if result %}
+          value="{{result['text']}}"
+          {% endif %}
+
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Key</label>
+        <input
+          type="number"
+          class="form-control"
+          id="formGroupExampleInput2"
+          placeholder="Key"
+
+          {% if result %}
+          value="{{result['key']}}"
+          {% endif %}
+
+          name="key"
+          required
+        />
+      </div>
+
+      {% if result %}
+      <div>
+      <label for="cipherText">Cipher Text</label>
+      <input
+        id="cipherText"
+        style="color: black"
+        value="{{ result['result'] }}"
+        placeholder="Cipher Text"
+      /><br />
+      </div>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary my-1">Submit</button>
+
+      <input type="button" class="btn btn-primary my-2" onclick="resetFun()" value="Reset form">
+      
+    </form>
+  </div>
+
+  {% endblock%}

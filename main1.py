@@ -7,203 +7,50 @@ M-Mac Spoofer
 A-Arp scanner
 P-port scanner
 This will be a command line project with some web interface that may be run on localhost.
-I am going to use sys module , os module and some extra related modules.
 '''
+
+'''
+To-Do list:-
+# I have to create a decrypt algo and there should be concept of symmetric key. --> done
+# I have to create a caeser cipher tool in web site
+# I have to create an advance port scanner.
+# Add some more features in ARP spoofer.
+# Design and add text in html.
+# May add some features which use to fetch data from database and display on the website.
+
+'''
+
 
 import argparse
 import sys
 import os
 import string
-import subprocess
-from socket import *
 import optparse
-from threading import *
 import random
 from termcolor import colored
 from time import sleep
-import scapy.all as scapy
-from flask import Flask, render_template
+import webapp
+from modules import *
 
-app = Flask(__name__)
+helper = colored('''
+Caeser Cipher:
+    csmap -c <text> -k <key> 
+Password Generator:
+    csmap -l <length of password>
+Port Scanner:
+    csmap -p <port no.> <ip address>
+MAC Spoofer:
+    csmap -cyan
+ARP Spoofer:
+    sudo csmap -a <router ip> -v <victim ip>''', 'cyan')
 
-
-# print("csmap")
-
-class CaeserCipher:
-    def __init__(self, text, s):
-        self.text = text
-        self.s = s
-
-    def encrypt(self):
-        result = ""
-
-        # traverse text
-        for i in range(len(self.text)):
-            char = self.text[i]
-
-            # Encrypt uppercase characters
-            if (char.isupper()):
-                result += chr((ord(char) + self.s-65) % 26 + 65)
-
-            # Encrypt lowercase characters
-            else:
-                result += chr((ord(char) + self.s - 97) % 26 + 97)
-
-        return result
-
-        # I have to create a decrypt algo and there should be a concept of key.
-
-
-class PassGenerator:
-    def __init__(self, l):
-        self.s1 = list(string.ascii_lowercase)
-        self.s2 = list(string.ascii_uppercase)
-        self.s3 = list(string.digits)
-        self.s4 = list(string.punctuation)
-        self.s = []
-        self.s.extend(self.s1)
-        self.s.extend(self.s2)
-        self.s.extend(self.s3)
-        self.s.extend(self.s4)
-        self.passlen = l
-
-        if self.passlen < 8:
-            print(colored('''\tYou entered a length which is too small.
-        Its easy to crack by any Cracker..
-        So, I will create a 8 letters password for you
-        I hope you dont mind it''', 'yellow'))
-            print(colored("".join(random.sample(self.s, 8)),
-                          'green', attrs=['bold', 'blink']))
-        elif self.passlen > 94:
-            print(
-                colored(f"Where to use {self.passlen} letters password LOL", 'yellow'))
-            print(colored(
-                f"If you really want to create a password of {self.passlen} letters then Enter", 'blue'))
-            typed_string = input("")
-            x = self.passlen // 94
-            y = self.passlen % 94
-            print(colored(("".join(random.sample(self.s, 94))) * x +
-                          ("".join(random.sample(self.s, y))), 'green', attrs=['bold']))
-        else:
-            print(colored("Yup! Good choice of password length..!!", 'yellow'))
-            print(colored("".join(random.sample(self.s, self.passlen)),
-                          'green', attrs=['bold']))
-
-
-class MacSpoofer:
-    def __init__(self):
-        print(colored("hey here i will create a MacSpoofer program"), 'red')
-        pass
-
-    def changeMACadd(interface, mac):
-        subprocess.call(["ifconfig", interface, "down"])
-        subprocess.call(["ifconfig", interface, "hw", "ether", mac])
-        subprocess.call(["ifconfig", interface, "up"])
-
-
-class ArpSpoofer:
-    def __init__(self):
-        print("hey here i will create a ArpSpoofer program")
-    def get_target_mac(ip):
-        arp_request= scapy.ARP(pdst=ip)
-        broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
-        final_packet=broadcast/arp_request
-        answer=scapy.srp(final_packet,timeout=2,verbose=False)[0]
-        mac=answer[0][1].hwsrc
-        return mac    
-
-    def spoof_arp(target_ip,spoofed_ip):
-        mac= ArpSpoofer.get_target_mac(target_ip) 
-        packet=scapy.ARP(op=2,hwdst=mac,pdst=target_ip,psrc=spoofed_ip)
-        scapy.send(packet,verbose=False)
-
-
-class PortScanner:
-    def __init__(self):
-        pass
-
-    def connScan(tgtHost, tgtPort):
-        try:
-            sock = socket(AF_INET, SOCK_STREAM)
-            sock.connect((tgtHost, tgtPort))
-            print(colored(f"[+] {tgtPort}/tcp Open", 'green'))
-        except:
-            print(colored(f"[-] {tgtPort}/tcp Closed", 'red'))
-        finally:
-            sock.close()
-
-    def portScan(tgtHost, tgtPorts):
-        try:
-            tgtIP = gethostbyname(tgtHost)
-        except:
-            print(colored(f"Unknown Host {tgtHost}", 'blue'))
-        try:
-            tgtName = gethostbyaddr(tgtIP)
-            print(colored(f"[+] Scan Results For: {tgtName[0]} ", 'blue'))
-            # print(tgtName) --> ('kali', [], ['192.168.1.8', '172.17.0.1'])
-        except:
-            print(colored(f"[+] Scan Results For: {tgtIP}", 'blue'))
-        setdefaulttimeout(1)
-        for tgtPort in tgtPorts:
-            t = Thread(target=PortScanner.connScan,
-                       args=(tgtHost, int(tgtPort)))
-            t.start()
-
-
-# -----------------------------------------------------------------------------------------
-
-# Web application
-
-
-@app.route('/')
-def help():
-    return render_template('index.html')
-
-
-@app.route('/portScanner')
-def portScanner():
-    return render_template('portScanner.html')
-
-
-@app.route('/arpSpoofer')
-def arpSpoofer():
-    return render_template('arpSpoofer.html')
-
-
-@app.route('/macSpoofer')
-def macSpoofer():
-    return render_template('macSpoofer.html')
-
-
-@app.route('/passGenerator')
-def passGenerator():
-    return render_template('passGenerator.html')
-
-
-@app.route('/caesercipher')
-def caesercipher():
-    return render_template('caesercipher.html')
-
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-# -----------------------------------------------------------------------------------------
 
 
 if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(usage=helper)
+    fPlace = sys.argv
     try:
-        fPlace = sys.argv[1]
-        if fPlace == '-c' or fPlace == '-h' or fPlace == '--help':
+        if '-c' in fPlace:
             parser.add_argument('-c', type=str,
                                 default=None,
                                 help='csmap -c <text> -k <key> ')
@@ -218,15 +65,30 @@ if __name__ == "__main__":
             print(
                 colored(f"Caeser Cipher Text: \'{val}\' ", 'green', attrs=['bold']))
 
-        elif fPlace == '-l' or fPlace == '-h' or fPlace == '--help':
+        elif '-d' in fPlace:
+            print("this is for decrypting cipher")
+            parser.add_argument('-d', type=str,
+                                default=None,
+                                help='csmap -c <text> -k <key> ')
+            parser.add_argument('-k', type=int,
+                                default=None,
+                                help='csmap -c <text> -k <key> ')
+            args = parser.parse_args()
+            # val=sys.stdout.write(str(c.encrypt()))
+            c = CaeserCipher(args.d, args.k)
+            val = c.decrypt()
+            print(colored(f"Text: \'{args.d}\' ", 'yellow'))
+            print(
+                colored(f"Caeser Cipher Text: \'{val}\' ", 'green', attrs=['bold']))
+
+        elif '-l' in fPlace:
             parser.add_argument('-l', type=int,
                                 default=None,
-                                help='csmap -s <length of password>')
+                                help='csmap -l <length of password>')
             args = parser.parse_args()
             PassGenerator(args.l)
 
-        elif fPlace == '-p' or fPlace == '-H' or fPlace == '--help':
-
+        elif '-p' in fPlace:
             parser = optparse.OptionParser(
                 'Usage of program : ' + '-H <target host> -p <target port>')
             parser.add_option('-H', dest='tgtHost',
@@ -245,7 +107,7 @@ if __name__ == "__main__":
                 exit(0)
             PortScanner.portScan(tgtHost, tgtPorts)
 
-        elif fPlace == '-m':
+        elif '-m' in fPlace:
             parser.add_argument('-m', type=str,
                                 default=None,
                                 help='csmap -m ')
@@ -263,24 +125,34 @@ if __name__ == "__main__":
                 print(colored(
                     f"[+] MAC address changed to {newMACadd} on interface {interface} ", "blue"))
 
-        elif fPlace == 'help':
-            app.run(host="127.0.0.1", port=8080, debug=True)
+        elif 'help' in fPlace:
+            if 'web' in fPlace:
+                webapp.app.run(host="127.0.0.1", port=8080, debug=True)
+            else:
+                print("Usage"+helper)
 
-        elif fPlace == '-a':
+        elif '-a' in fPlace:
+            parser.add_argument(
+                '-a', type=str, default="192.168.1.1", help="ip of router")
+            parser.add_argument(
+                '-v', type=str, default=None, help="ip of victim")
+            args = parser.parse_args()
             try:
                 while True:
+                    ArpSpoofer.spoof_arp(args.a, args.v)
+                    ArpSpoofer.spoof_arp(args.v, args.a)
+                    # ArpSpoofer.spoof_arp("192.168.1.1","192.168.1.3")
                     # spoof_arp("ip_of_router","ip_of_victim")
-                    ArpSpoofer.spoof_arp("192.168.1.1","192.168.1.3")
-                    ArpSpoofer.spoof_arp("192.168.1.3","192.168.1.1")
                     # spoof_arp("ip_of_victim","ip_of_router")
 
             except KeyboardInterrupt:
-                print(colored("\n[-] Stopping!!","red"))
+                print(colored("\n[-] Stopping!!", "red"))
                 sleep(2)
 
+            except:
+                print(
+                    colored("Some Error Occured , first ping the victim computer", 'red'))
         else:
-            print(
-                "csmap -c <text> -k <key> \ncsmap -s <length of password>\ncsmap -p <port no.> <ip address> ")
-
-    except:
-        print("csmap -c <text> -k <key> \ncsmap -s <length of password>\ncsmap -p <port no.> <ip address> \ncsmap -m \nsudo csmap -a")
+            print("Usage:"+helper)
+    except KeyboardInterrupt:
+        print(colored(helper, 'cyan'))

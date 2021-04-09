@@ -11,7 +11,7 @@
     />
 
     <!-- Bootstrap CSS -->
-    
+
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -19,43 +19,18 @@
       crossorigin="anonymous"
     />
 
-    <!-- <style>
-      body {
-        background: black;
-      }
-      .text-red {
-        color: #e63946;
-      }
-
-      .text-light {
-        color: #f4f4f4;
-      }
-
-      .text-black {
-        color: #333333;
-      }
-
-      .text-gray {
-        color: #555555;
-      }
-
-      .bg-dark {
-        background-color: #263238;
-      }
-      nav.bg {
-        background-color: black !important;
-      }
-    </style> -->
-
-  <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='../static/css/style.css') }}"
+    />
 
     <title>CSMAP</title>
     {% endblock %}
   </head>
 
-  <body>
+  <body id="mainBody">
     <nav class="navbar navbar-expand-lg navbar-dark bg">
-      <a class="navbar-brand" href="#">CSMAP</a>
+      <a class="navbar-brand" href="./">CSMAP</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -74,6 +49,30 @@
           <!-- <a class="nav-item nav-link" href="#">Pricing</a> -->
           <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
         </div>
+      </div>
+
+      <!-- --------------- SideBar HamBurger ------------------ -->
+
+      <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          >&times;</a
+        >
+        <a href="./">Home</a>
+        <a href="./caesercipher">Caeser Cipher</a>
+        <a href="./macSpoofer">Mac Spoofer</a>
+        <a href="./arpSpoofer">ARP Spoofer</a>
+        <a href="./portScanner">Port Scanner</a>
+        <a href="./passGenerator">Random Password Generator</a>
+        <a href="./about">About</a>
+        <a href="./contact">Contact</a>
+      </div>
+
+      <div id="main">
+        <button class="openbtn" onclick="openNav()">
+          &#9776; 
+        </button>
+        <!-- <h2>Collapsed Sidebar</h2>
+        <p>Content...</p> -->
       </div>
     </nav>
 
@@ -111,4 +110,22 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
+  {% block html %} {% endblock %}
+  <script>
+    /* Set the width of the sidebar to 300px and the left margin of the page content to 300px */
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "300px";
+      document.getElementById("mainBody").style.marginRight = "300px";
+      document.getElementById("main").style.display = "None";
+    }
+    
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginRight = "0";
+      document.getElementById("main").style.display = "block";
+      document.getElementById("mainBody").style.marginRight = "0";
+    }
+  </script>
+
 </html>
