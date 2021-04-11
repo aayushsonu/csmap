@@ -15,7 +15,7 @@
   }
 
   html {
-    font-size: 95%; 
+    font-size: 95%;
   }
 
   body {
@@ -43,7 +43,7 @@
     background-color: #f4f4f4;
   }
 
-  .mainH p:hover{
+  .mainH p:hover {
     padding-bottom: 0.2rem;
     border-bottom: 0.2rem solid #333333;
     border-top: 0.2rem solid #333333;
@@ -68,8 +68,63 @@
 <header class="mainH"><p>CSMAP</p></header>
 
 <div class="scontainer">
-  <section style="color: white;font-size: 1.2rem;align-self: center;margin: auto 1.2rem;text-align: center;">
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero recusandae fugiat excepturi quisquam iure natus est totam odio, in dolore, debitis vel alias harum provident ea quis doloremque sit vitae commodi optio perspiciatis ipsam fuga! Sunt, hic quod! Eaque numquam optio animi, aut unde iste laboriosam odit sit accusamus beatae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus maiores explicabo voluptatibus beatae dolorum repudiandae tempora, quisquam, saepe atque illo nemo praesentium! Nihil numquam rem, sed quae assumenda similique veniam?Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatum perferendis iure distinctio velit amet, voluptatem id similique numquam hic inventore molestiae, eligendi suscipit porro laboriosam tenetur adipisci aut unde excepturi. Eaque cumque fuga saepe voluptatibus autem animi sapiente porro explicabo, perspiciatis repellendus soluta error, at ea qui ipsam suscipit ratione minima eligendi sed distinctio? Aliquid, veritatis temporibus adipisci deleniti minima voluptates consequatur consequuntur eligendi corrupti maxime dolores nihil placeat, eius laborum minus dicta a error hic ea officia accusamus quisquam laboriosam! Adipisci obcaecati suscipit eos nam harum velit corporis, distinctio sint architecto optio! Rerum fugiat rem ullam in placeat?</p>
+  <section class="mainSection">
+    <div id="maintext">
+    <p>
+      CSMAP is an Integrated Tool which provide many facilities and help you in
+      Pentesting,Networking and Bug Hunting. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt harum nulla quos. Et saepe tempora repellendus dolores fugiat ad inventore!
+    </p>
+
+    <p style="text-align: left;">CSMAP Stands for:</p>
+    <ul class="ulist">
+      <li class="olist">C : Caeser Cipher</li>
+      <li class="olist">S : Strong Password Generator</li>
+      <li class="olist">M : MAC Spoofer</li>
+      <li class="olist">A : ARP Spoofer</li>
+      <li class="olist">P : Port Scanner</li>
+    </ul>
+  </div>
+    <!-- code -->
+
+    <div class="cscode">
+      <p class="pcode" >CSMAP Help</p>
+      <pre><code class="language-bash">sudo python3 csmap.py -h</code></pre>
+      <pre><code class="language-bash">sudo python3 csmap.py --help</code></pre>
+    </div>
+
+    <div class="cscode">
+      <p class="pcode">CSMAP Help In Web Page</p>
+      <pre><code class="language-bash">sudo python3 csmap.py help web</code></pre>
+    </div>
+
+    <div class="cscode">
+      <p class="pcode">Caeser Cipher Tool</p>
+      <p class="ccode">Encryption:</p>
+      <pre><code class="language-bash">sudo python3 csmap.py -c &lt;text&gt; -k &lt;key&gt; </code></pre>
+
+      <p class="ccode">Decryption:</p>
+      <pre><code class="language-bash">sudo python3 csmap.py -d &lt;text&gt; -k &lt;key&gt; </code></pre>
+    </div>
+
+    <div class="cscode">
+      <p class="pcode">Random Password Generator</p>
+      <pre><code class="language-bash">sudo python3 csmap.py -l &lt;length of password&gt;</code></pre>
+    </div>
+
+    <div class="cscode">
+      <p class="pcode">MAC Spoofer</p>
+      <pre><code class="language-bash">sudo python3 csmap.py -m</code></pre>
+    </div>
+
+    <div class="cscode">
+      <p class="pcode">ARP Spoofer</p>
+      <pre><code class="language-bash">sudo python3 csmap.py -a &lt;router IP&gt; -v &lt;victim IP&gt;</code></pre>
+    </div>
+
+    <div class="cscode">
+      <p class="pcode">Port Scanner</p>
+      <pre><code class="language-bash">sudo python3 csmap.py -p &lt;port number&gt; -v &lt;IP Address&gt;</code></pre>
+    </div>
   </section>
   <div class="cardcontainer">
     <div class="card" style="width: 30rem">
@@ -111,3 +166,5 @@
 </div>
 
 {% endblock %}
+
+

@@ -48,6 +48,12 @@ nav.bg {
   font-size: 10rem;
   margin-bottom: 5%;
   background-color: #f4f4f4;
+  animation: mainHeader 3s;
+}
+
+@keyframes mainHeader {
+  from{ color: #f4f4f4;}
+  to {color: #333333;}
 }
 
 .scontainer {
@@ -60,10 +66,20 @@ nav.bg {
 }
 
 .scontainer p{
-  text-align: center;
+  /* text-align: center; */
   color: #f4f4f4;
 }
 
+#maintext{
+  margin-bottom: 1rem;
+}
+
+.mainSection{
+  color: white;
+  font-size: 1.2rem;
+  align-self: center;
+  margin: auto 1.2rem;
+}
 
  /* ------------------------------------The sidebar menu -----------------------------------------*/
 
@@ -129,8 +145,59 @@ nav.bg {
 }
 
 
+/* -------------------------------List Of index pages----------------------- */
+ul.ulist{
+  display: flex;
+  flex-direction: column;
+}
+li.olist{
+  text-align: left;
+  margin-left: 3rem;
+  list-style:none;
+}
+
+/* --------------------------CSS for CARDs --------------------------- */
+
+.card{
+  background: #333333;
+  color: #f4f4f4;
+}
+.card-text{
+  text-align: left !important; 
+}
+
+.btn{
+  background-color: #f4f4f4;
+  color: #333333;
+}
+
+/* index page help with commands */
 
 
+.cscode{
+  border-bottom: 3px solid #f4f4f4;
+  margin-bottom: 3rem;
+  transition: border-bottom 1s;
+}
+
+.cscode:hover{
+  border-bottom: black;
+}
+
+p.pcode{
+  text-align: left;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+p.ccode{
+  display: flex;
+  border-bottom: 2px solid rgb(124, 173, 124);
+  color: antiquewhite;
+  font-family: cursive;
+  font-size: 2rem;
+  max-width: min-content;
+}
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {

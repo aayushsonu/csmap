@@ -12,14 +12,13 @@ This will be a command line project with some web interface that may be run on l
 '''
 To-Do list:-
 # I have to create a decrypt algo and there should be concept of symmetric key. --> done
-# I have to create a caeser cipher tool in web site
+# I have to create a caeser cipher tool in web site --> done
 # I have to create an advance port scanner.
 # Add some more features in ARP spoofer.
 # Design and add text in html.
 # May add some features which use to fetch data from database and display on the website.
 
 '''
-
 
 import argparse
 import sys
@@ -31,6 +30,7 @@ from termcolor import colored
 from time import sleep
 import webapp
 from modules import *
+from art import *
 
 helper = colored('''
 Caeser Cipher:
@@ -40,13 +40,14 @@ Password Generator:
 Port Scanner:
     csmap -p <port no.> <ip address>
 MAC Spoofer:
-    csmap -cyan
+    csmap -m
 ARP Spoofer:
     sudo csmap -a <router ip> -v <victim ip>''', 'cyan')
 
 
-
 if __name__ == "__main__":
+
+    tprint("\nCSMAP",font="random")
     parser = argparse.ArgumentParser(usage=helper)
     fPlace = sys.argv
     try:
@@ -66,7 +67,7 @@ if __name__ == "__main__":
                 colored(f"Caeser Cipher Text: \'{val}\' ", 'green', attrs=['bold']))
 
         elif '-d' in fPlace:
-            print("this is for decrypting cipher")
+            print(colored("Cipher is Decrypting...",'blue'))
             parser.add_argument('-d', type=str,
                                 default=None,
                                 help='csmap -c <text> -k <key> ')
@@ -129,7 +130,7 @@ if __name__ == "__main__":
             if 'web' in fPlace:
                 webapp.app.run(host="127.0.0.1", port=8080, debug=True)
             else:
-                print("Usage"+helper)
+                print("Usage:"+helper)
 
         elif '-a' in fPlace:
             parser.add_argument(

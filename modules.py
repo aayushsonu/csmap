@@ -19,11 +19,10 @@ class CaeserCipher:
         for i in range(len(self.text)):
             char = self.text[i]
 
-# ord can change alphabet to ascii
-# chr can cahne ascii to alphabet
-
+            if (char==' ' or char=='\n' or char=='\t'):
+                result+=char
             # Encrypt uppercase characters
-            if (char.isupper()):
+            elif (char.isupper()):
                 result += chr((ord(char) + self.s-65) % 26 + 65)
 
             # Encrypt lowercase characters
@@ -37,13 +36,15 @@ class CaeserCipher:
         result = ""
         for i in range(len(self.text)):
             char = self.text[i]
-            # Encrypt uppercase characters
-            if (char.isupper()):
-                result += chr((ord(char) - 65) % 26 - self.s + 65)
+            if (char==' ' or char=='\n' or char=='\t'):
+                result+=char
+            # Decrypt uppercase characters
+            elif (char.isupper()):
+                result += chr((ord(char) - self.s - 65) % 26 + 65)
 
-            # Encrypt lowercase characters
+            # Decrypt lowercase characters
             else:
-                result += chr((ord(char) - 97) % 26 - self.s + 97)
+                result += chr((ord(char) - self.s - 97) % 26 + 97)
 
         return result
 

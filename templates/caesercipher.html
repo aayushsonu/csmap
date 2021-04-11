@@ -5,7 +5,9 @@
     font-style: italic;
     font-weight: 700;
   }
-</style>
+  </style>
+
+<title>CaeserCipher</title>
 
 {% endblock %} {% block body %}
 
@@ -13,44 +15,68 @@
 
 <div class="scontainer text-light">
 
-
-  {% block div %} {% endblock%}
-
-
+  <section class="mainSection">
   <p>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt aliquid
-    quae fugit? Molestias eaque dolore ratione non magnam dignissimos
-    repellendus rem, laboriosam maiores tempore, voluptate deserunt labore iusto
-    recusandae praesentium minus sed. Velit illum id rerum, deleniti fugiat vel
-    aspernatur expedita aliquid quaerat pariatur distinctio, quia optio? Quidem
-    non sequi nam sapiente delectus, magni atque ratione porro explicabo? In
-    doloremque vitae sint dolorem possimus iusto impedit eveniet natus inventore
-    soluta reprehenderit aliquam fugiat voluptate provident neque reiciendis,
-    quia quam commodi modi earum consequatur nemo? Reiciendis iusto consequuntur
-    expedita, totam facilis quibusdam molestias fugiat adipisci maiores, hic
-    fugit esse cum suscipit? Sapiente exercitationem rem fugit, numquam autem
-    architecto, consectetur iusto officiis minima dolorem dignissimos?
-    Perspiciatis modi, vel praesentium eius dolor totam odit nulla culpa non
-    cupiditate iste, itaque vero. Cumque, ipsum aliquid. Facilis dolorum
-    laboriosam, ducimus corrupti maiores officia quasi, magni, autem impedit
-    saepe iste laudantium aliquam reprehenderit molestiae commodi facere
-    expedita vitae ratione! Blanditiis nihil adipisci reiciendis, veniam ratione
-    quia? Soluta harum aperiam tempore quos eaque natus laudantium consequuntur
-    odit et labore veniam corrupti fuga repudiandae omnis ex repellat, quidem,
-    laboriosam consectetur? Mollitia tempora nesciunt qui aliquam accusantium
-    placeat rerum necessitatibus, doloremque voluptatem aperiam culpa autem id
-    blanditiis tempore atque deleniti, doloribus in iusto natus cum modi! Quis
-    ullam, nostrum voluptatum nesciunt odio dolor provident magnam ea, eaque
-    sint repellendus quisquam deserunt at est. Eaque hic dicta id quia sed
-    tempora quisquam quo atque at cumque ab pariatur molestias, eos veniam
-    praesentium mollitia quidem numquam aspernatur temporibus repellat eius
-    molestiae ad iure. Veniam totam architecto ea quia natus quas ducimus
-    tempora. Soluta rerum aut beatae deserunt? Aut corporis commodi expedita nam
-    dolorum? Doloribus corrupti excepturi sit non? Numquam explicabo autem
-    veritatis in error reiciendis sapiente sequi, cumque reprehenderit
-    perferendis ea, quos recusandae officia quas nostrum quisquam! Ipsam, odio
-    reiciendis. Deserunt.
+    The Caesar cipher is the simplest and oldest method of cryptography. The Caesar cipher method is based on a mono-alphabetic cipher and is also called a shift cipher or additive cipher. Julius Caesar used the shift cipher (additive cipher) technique to communicate with his officers. For this reason, the shift cipher technique is called the Caesar cipher. The Caesar cipher is a kind of replacement (substitution) cipher, where all letter of plain text is replaced by another letter.
+    <br>
+    <ul>
+      <li>Plaintext: It is a simple message written by the user.</li>
+      <li>Ciphertext: It is an encrypted message after applying some technique.</li>
+    </ul>
   </p>
+  <div class="cscode">
+    <p class="pcode">Caeser Cipher Class Declaration</p>
+      <pre><code class="language-py">class CaeserCipher:
+    def __init__(self, text, s):
+        self.text = text
+        self.s = int(s)</code></pre>
+  </div>
+
+  <div class="cscode">
+    <p class="pcode">Code for Encryption</p>
+      <pre><code class="language-py">def encrypt(self):
+    result = ""
+
+    # traverse text
+    for i in range(len(self.text)):
+        char = self.text[i]
+
+        if (char==' ' or char=='\n' or char=='\t'):
+            result+=char
+            
+        # Encrypt uppercase characters
+        elif (char.isupper()):
+            result += chr((ord(char) + self.s-65) % 26 + 65)
+
+        # Encrypt lowercase characters
+        else:
+            result += chr((ord(char) + self.s - 97) % 26 + 97)
+
+    return result</code></pre>
+  </div>
+
+  <div class="cscode">
+    <p class="pcode">Code for Deryption</p>
+      <pre><code class="language-py">def decrypt(self):
+    result = ""
+    for i in range(len(self.text)):
+        char = self.text[i]
+
+        if (char==' ' or char=='\n' or char=='\t'):
+            result+=char
+
+        # Decrypt uppercase characters
+        elif (char.isupper()):
+            result += chr((ord(char) - self.s - 65) % 26 + 65)
+
+        # Decrypt lowercase characters
+        else:
+            result += chr((ord(char) - self.s - 97) % 26 + 97)
+
+    return result</code></pre>
+  </div>
+
+</section>
 </div>
 
 {% endblock %}
