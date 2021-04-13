@@ -1,69 +1,81 @@
-{% extends "caesercipher.html" %}
+{% extends "layout.html" %} {% block head %} {{ super() }}
 
-{% block div %}
+<link rel="stylesheet" href="../static/css/form.css" />
 
-
-{% if endpoint=='encrypt' %}
-<h2>Encryption</h2>
-
-{% else %}  
-<h2>Decryption</h2>
-
-{% endif %}
-
-
+{% endblock %} {% block body %}
+<header class="mainH">Caeser Cipher</header>
 <div class="cipherF">
-    <form id="cc-form" method="POST">
-      <div class="form-group">
-        <label for="formGroupExampleInput">Text</label>
-        <input
-          type="text"
-          class="form-control"
-          id="formGroupExampleInput"
-          placeholder="Main text"
-          name="text"
-          
-          {% if result %}
-          value="{{result['text']}}"
-          {% endif %}
+  {% if endpoint=='encrypt' %}
+    <h2 id="ccheader1">Encryption</h2>
 
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="formGroupExampleInput2">Key</label>
-        <input
-          type="number"
-          class="form-control"
-          id="formGroupExampleInput2"
-          placeholder="Key"
+    {% else %}
+    <h2 id="ccheader1">Decryption</h2>
 
-          {% if result %}
-          value="{{result['key']}}"
-          {% endif %}
-
-          name="key"
-          required
-        />
-      </div>
-
-      {% if result %}
-      <div>
-      <label for="cipherText">Cipher Text</label>
+    {% endif %}
+  <form method="POST">
+    <div class="user-box">
       <input
-        id="cipherText"
-        style="color: black"
-        value="{{ result['result'] }}"
-        placeholder="Cipher Text"
-      /><br />
-      </div>
-      {% endif %}
+        type="text"
+        class="form-control"
+        id="formGroupExampleInput"
+        name="text"
+        {%
+        if
+        result
+        %}
+        value="{{result['text']}}"
+        {%
+        endif
+        %}
+        required
+      />
+      {% if endpoint=='encrypt' %}
+      <label for="formGroupExampleInput">Plain Text</label>
+      {% else %}
+      <label for="formGroupExampleInput">Cipher Text</label>
+    {% endif %}
+    </div>
+    <div class="user-box">
+      <input
+        type="number"
+        class="form-control"
+        id="formGroupExampleInput2"
+        {%
+        if
+        result
+        %}
+        value="{{result['key']}}"
+        {%
+        endif
+        %}
+        name="key"
+        required
+      />
+      <label for="formGroupExampleInput2">Key</label>
+    </div>
 
-      <button type="submit" class="btn btn-primary my-1">Submit</button>
+    {% if result %}
+    <div class="user-box">
+      <input
+      id="cipherText"
+      type="text"
+      value="{{ result['result'] }}"
+      />
+      {% if endpoint=='encrypt' %}
+      <label for="cipherText">Cipher Text</label>
+      {% else %}
+      <label for="formGroupExampleInput">Plain Text</label>
+    {% endif %}
+    </div>
+    {% endif %}
 
-      <input type="button" class="btn btn-primary my-2" onclick="resetFun()" value="Reset form">
-      
-    </form>
-  </div>
-
-  {% endblock%}
+    <button type="submit" class="btn btn-primary my-1">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>Submit
+    </button>
+  </form>
+</div>
+</div>
+{% endblock %}

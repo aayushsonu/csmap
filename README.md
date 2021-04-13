@@ -24,10 +24,12 @@ If permission denied then use:
 1. Caeser Cipher:
 
 - Encrypt The Plain Text:
-`sudo python3 csmap.py -c <plain text> -k <key>`
+
+    `sudo python3 csmap.py -c <plain text> -k <key>`
 
 - Decrypt The Cipher Text:
-`sudo python3 csmap.py -d <cipher text> -k <key>`
+
+    `sudo python3 csmap.py -d <cipher text> -k <key>`
 
 2. Strong Password Generator:
 
@@ -44,3 +46,18 @@ If permission denied then use:
 5. Port Scanner
 
     `sudo python3 csmap.py -p <port no.> <ip address>`
+
+6. Help
+    `sudo python3 csmap.py -h`
+    `sudo python3 csmap.py --help`
+    `sudo python3 csmap.py help`
+
+
+**Web & GUI services**
+
+- Help pages and Online Documentation:
+    `sudo python3 csmap.py help web`
+
+On Website you can able to use caeser cipher; encryption and decryption in GUI format.
+
+[Caeser Cipher - Encryption](http://127.0.0.1:8080/caesercipher/encrypt "caesercipher/encrypt")

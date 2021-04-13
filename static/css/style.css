@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
 
-
-
 body {
   background: black;
 }
@@ -76,9 +74,15 @@ nav.bg {
 
 .mainSection{
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   align-self: center;
   margin: auto 1.2rem;
+  max-width: inherit;
+}
+
+.mainSection h2{
+  font-weight: 700;
+  font-size: 2.3rem;
 }
 
  /* ------------------------------------The sidebar menu -----------------------------------------*/
@@ -136,13 +140,17 @@ nav.bg {
 
 
 /* ---------------------------------caeser cipher ------------------------------ */
-.cipherF{
+
+
+.cipherF{ 
   margin: auto;
-  background-color: #f4f4f4;
+  /* border: 2px solid yellow; */
+  /* background-color: #f4f4f4; */
   color: #111;
   margin-bottom: 20px;
   padding: 0px 100px;
 }
+
 
 
 /* -------------------------------List Of index pages----------------------- */

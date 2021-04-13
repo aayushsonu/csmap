@@ -3,28 +3,49 @@
 {% block head %} 
 {{ super() }} 
 
-
 <style>
 
 .mainH{
-  font-style: italic;
   font-weight: 700;
 }
 
 </style>
 
-
 {% endblock %}
 {% block body %}
 
-
-
 <header class="mainH">Mac Spoofer</header>
 
-<div class="scontainer">
+<div class="scontainer text-light">
 
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt aliquid quae fugit? Molestias eaque dolore ratione non magnam dignissimos repellendus rem, laboriosam maiores tempore, voluptate deserunt labore iusto recusandae praesentium minus sed. Velit illum id rerum, deleniti fugiat vel aspernatur expedita aliquid quaerat pariatur distinctio, quia optio? Quidem non sequi nam sapiente delectus, magni atque ratione porro explicabo? In doloremque vitae sint dolorem possimus iusto impedit eveniet natus inventore soluta reprehenderit aliquam fugiat voluptate provident neque reiciendis, quia quam commodi modi earum consequatur nemo? Reiciendis iusto consequuntur expedita, totam facilis quibusdam molestias fugiat adipisci maiores, hic fugit esse cum suscipit? Sapiente exercitationem rem fugit, numquam autem architecto, consectetur iusto officiis minima dolorem dignissimos? Perspiciatis modi, vel praesentium eius dolor totam odit nulla culpa non cupiditate iste, itaque vero. Cumque, ipsum aliquid. Facilis dolorum laboriosam, ducimus corrupti maiores officia quasi, magni, autem impedit saepe iste laudantium aliquam reprehenderit molestiae commodi facere expedita vitae ratione! Blanditiis nihil adipisci reiciendis, veniam ratione quia? Soluta harum aperiam tempore quos eaque natus laudantium consequuntur odit et labore veniam corrupti fuga repudiandae omnis ex repellat, quidem, laboriosam consectetur? Mollitia tempora nesciunt qui aliquam accusantium placeat rerum necessitatibus, doloremque voluptatem aperiam culpa autem id blanditiis tempore atque deleniti, doloribus in iusto natus cum modi! Quis ullam, nostrum voluptatum nesciunt odio dolor provident magnam ea, eaque sint repellendus quisquam deserunt at est. Eaque hic dicta id quia sed tempora quisquam quo atque at cumque ab pariatur molestias, eos veniam praesentium mollitia quidem numquam aspernatur temporibus repellat eius molestiae ad iure. Veniam totam architecto ea quia natus quas ducimus tempora. Soluta rerum aut beatae deserunt? Aut corporis commodi expedita nam dolorum? Doloribus corrupti excepturi sit non? Numquam explicabo autem veritatis in error reiciendis sapiente sequi, cumque reprehenderit perferendis ea, quos recusandae officia quas nostrum quisquam! Ipsam, odio reiciendis. Deserunt.</p>
+  <section class="mainSection">
+    <p>MAC spoofing is a technique for changing a factory-assigned Media Access Control (MAC) address of a network interface on a networked device. The MAC address that is hard-coded on a network interface controller (NIC) cannot be changed. However, many drivers allow the MAC address to be changed. Additionally, there are tools which can make an operating system believe that the NIC has the MAC address of a user's choosing. The process of masking a MAC address is known as MAC spoofing. Essentially, MAC spoofing entails changing a computer's identity, for any reason, and it is relatively easy.</p>
+    <br>
+  <div class="cscode">
+    <p class="pcode">MAC Spoofer Class Declaration</p>
+    <pre><code class="language-py">class MacSpoofer:
+    def changeMACadd(interface, mac):
+        subprocess.call(["ifconfig", interface, "down"])
+        subprocess.call(["ifconfig", interface, "hw", "ether", mac])
+        subprocess.call(["ifconfig", interface, "up"])</code></pre>
+  </div>
+  <div class="cscode">
+    <p class="pcode">Main Function</p>
+    <pre><code class="language-py">if __name__="__main__":
+    interface = input("[+] Enter Interface to change MAC Address On: ")
+    newMACadd = input("[+] Enter MAC Address to change to: ")
 
+    beforeChange = subprocess.check_output(["ifconfig", interface])
+    MacSpoofer.changeMACadd(interface, newMACadd)
+    afterChange = subprocess.check_output(["ifconfig", interface])
+    if beforeChange == afterChange:
+        print(
+            colored(f"[-] Failed to change mac address to {newMACadd} ", "red"))
+    else:
+        print(colored(
+            f"[+] MAC address changed to {newMACadd} on interface {interface} ", "blue"))</code></pre>
+  </div>
+</section>
 </div>
 
 {% endblock %}

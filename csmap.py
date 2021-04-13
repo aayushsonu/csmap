@@ -11,8 +11,6 @@ This will be a command line project with some web interface that may be run on l
 
 '''
 To-Do list:-
-# I have to create a decrypt algo and there should be concept of symmetric key. --> done
-# I have to create a caeser cipher tool in web site --> done
 # I have to create an advance port scanner.
 # Add some more features in ARP spoofer.
 # Design and add text in html.
@@ -34,15 +32,15 @@ from art import *
 
 helper = colored('''
 Caeser Cipher:
-    csmap -c <text> -k <key> 
+    python3 csmap.py -c <text> -k <key> 
 Password Generator:
-    csmap -l <length of password>
+    python3 csmap.py -l <length of password>
 Port Scanner:
-    csmap -p <port no.> <ip address>
+    python3 csmap.py -p <port no.> <ip address>
 MAC Spoofer:
-    csmap -m
+    python3 csmap.py -m
 ARP Spoofer:
-    sudo csmap -a <router ip> -v <victim ip>''', 'cyan')
+    sudo python3 csmap.py -a <router ip> -v <victim ip>''', 'cyan')
 
 
 if __name__ == "__main__":

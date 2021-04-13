@@ -3,28 +3,65 @@
 {% block head %} 
 {{ super() }} 
 
-
 <style>
 
 .mainH{
-  font-style: italic;
   font-weight: 700;
 }
-
 </style>
-
 
 {% endblock %}
 {% block body %}
 
-
-
 <header class="mainH">Port Scanner</header>
 
 <div class="scontainer">
+  <section class="mainSection">
+    <p>A port scanner is an application designed to probe a server or host for open ports. Such an application may be used by administrators to verify security policies of their networks and by attackers to identify network services running on a host and exploit vulnerabilities.</p>
 
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt aliquid quae fugit? Molestias eaque dolore ratione non magnam dignissimos repellendus rem, laboriosam maiores tempore, voluptate deserunt labore iusto recusandae praesentium minus sed. Velit illum id rerum, deleniti fugiat vel aspernatur expedita aliquid quaerat pariatur distinctio, quia optio? Quidem non sequi nam sapiente delectus, magni atque ratione porro explicabo? In doloremque vitae sint dolorem possimus iusto impedit eveniet natus inventore soluta reprehenderit aliquam fugiat voluptate provident neque reiciendis, quia quam commodi modi earum consequatur nemo? Reiciendis iusto consequuntur expedita, totam facilis quibusdam molestias fugiat adipisci maiores, hic fugit esse cum suscipit? Sapiente exercitationem rem fugit, numquam autem architecto, consectetur iusto officiis minima dolorem dignissimos? Perspiciatis modi, vel praesentium eius dolor totam odit nulla culpa non cupiditate iste, itaque vero. Cumque, ipsum aliquid. Facilis dolorum laboriosam, ducimus corrupti maiores officia quasi, magni, autem impedit saepe iste laudantium aliquam reprehenderit molestiae commodi facere expedita vitae ratione! Blanditiis nihil adipisci reiciendis, veniam ratione quia? Soluta harum aperiam tempore quos eaque natus laudantium consequuntur odit et labore veniam corrupti fuga repudiandae omnis ex repellat, quidem, laboriosam consectetur? Mollitia tempora nesciunt qui aliquam accusantium placeat rerum necessitatibus, doloremque voluptatem aperiam culpa autem id blanditiis tempore atque deleniti, doloribus in iusto natus cum modi! Quis ullam, nostrum voluptatum nesciunt odio dolor provident magnam ea, eaque sint repellendus quisquam deserunt at est. Eaque hic dicta id quia sed tempora quisquam quo atque at cumque ab pariatur molestias, eos veniam praesentium mollitia quidem numquam aspernatur temporibus repellat eius molestiae ad iure. Veniam totam architecto ea quia natus quas ducimus tempora. Soluta rerum aut beatae deserunt? Aut corporis commodi expedita nam dolorum? Doloribus corrupti excepturi sit non? Numquam explicabo autem veritatis in error reiciendis sapiente sequi, cumque reprehenderit perferendis ea, quos recusandae officia quas nostrum quisquam! Ipsam, odio reiciendis. Deserunt.</p>
+    <p>A port scan or portscan is a process that sends client requests to a range of server port addresses on a host, with the goal of finding an active port; this is not a nefarious process in and of itself.The majority of uses of a port scan are not attacks, but rather simple probes to determine services available on a remote machine. </p>
+    <div class="cscode">
+      <p class="pcode">Port Scanner Class Declaration</p>
+      <pre><code class="language-py">class PortScanner:
+    def connScan(tgtHost, tgtPort):
+        try:
+            sock = socket(AF_INET, SOCK_STREAM)
+            sock.connect((tgtHost, tgtPort))
+            print(colored(f"[+] {tgtPort}/tcp Open", 'green'))
+        except:
+            print(colored(f"[-] {tgtPort}/tcp Closed", 'red'))
+        finally:
+            sock.close()
 
+    def portScan(tgtHost, tgtPorts):
+        try:
+            tgtIP = gethostbyname(tgtHost)
+        except:
+            print(colored(f"Unknown Host {tgtHost}", 'blue'))
+        try:
+            tgtName = gethostbyaddr(tgtIP)
+            print(colored(f"[+] Scan Results For: {tgtName[0]} ", 'blue'))
+        except:
+            print(colored(f"[+] Scan Results For: {tgtIP}", 'blue'))
+        setdefaulttimeout(1)
+        for tgtPort in tgtPorts:
+            t = Thread(target=PortScanner.connScan,
+                        args=(tgtHost, int(tgtPort)))
+            t.start()</code></pre>
+    </div>
+
+    <div class="cscode">
+      <p class="pcode">Main Function</p>
+      <pre><code class="language-py">if __name__="__main__":
+    tgtHost = options.tgtHost
+    tgtPorts = str(options.tgtPort).split(',')
+    if (tgtHost == None) | (tgtPorts[0] == None):
+        print(parser.usage)
+        exit(0)
+    PortScanner.portScan(tgtHost, tgtPorts)</code></pre>
+    </div>
+
+  </section>
 </div>
 
 {% endblock %}

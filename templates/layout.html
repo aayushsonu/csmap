@@ -24,7 +24,12 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='../static/css/style.css') }}"
     />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='../static/css/footer.css') }}"
+    />
     
+
     <title>CSMAP</title>
     {% endblock %}
   </head>
@@ -46,9 +51,6 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <!-- <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
-          <!-- <a class="nav-item nav-link" href="#">Features</a> -->
-          <!-- <a class="nav-item nav-link" href="#">Pricing</a> -->
-          <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
         </div>
       </div>
 
@@ -81,22 +83,10 @@
 
     {% block body %} {% endblock %}
 
-    <footer>
-      <div
-        class="text-light"
-        style="
-          padding: 4rem;
-          border: 2px solid green;
-          text-align: center;
-          font-size: xx-large;
-        "
-      >
-        <p>FOOTER</p>
-        <p class="container">i Will do my work letter</p>
-      </div>
-    </footer>
+    {% include "footer.html" %} 
   </body>
-  <script src="../static/prism/prism.js"></script>
+  <!-- <script src="../static/prism/prism.js"></script> -->
+  <script src="{{url_for('static',filename='prism/prism.js')}}"></script>
   
   <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
