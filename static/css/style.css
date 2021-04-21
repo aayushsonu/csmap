@@ -207,6 +207,93 @@ p.ccode{
   max-width: min-content;
 }
 
+
+/* ========================== contact page ========================= */
+
+.ncontainer{
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid #CC6666; */
+  border-left: 2px solid #CC6666;
+  border-right: 2px solid #CC6666;
+  border-bottom: 2px solid #CC6666;
+  max-width: 30vw;
+  margin: auto;
+  padding-top: 2vh;
+  padding-bottom: 4vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.ncontainer:hover{
+  border-top: 3px solid #CC6666;
+  transition: border-top 1s;
+}
+
+.ncontainer h2{
+  align-self: center;
+  color: #CC6666;
+  font-weight: 600;
+}
+.ncontainer h4{
+  align-self: center;
+  color: #cc6666;
+}
+
+.ncontainer .body p{
+  color: #111;
+}
+
+.ncontainer .body .contact-name{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ncontainer form { max-width:420px; margin:30px auto;  }
+
+.feedback-input {
+  color:white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border:2px solid #CC6666;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.feedback-input:focus { border:2px solid #CC4949; }
+
+.ncontainer textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+.ncontainer [type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background:#CC6666;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+.ncontainer [type="submit"]:hover { background:#CC4949; }
+
+
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left .5s; /* If you want a transition effect */

@@ -14,12 +14,13 @@ db=SQLAlchemy(app)
 # Create db model
 class MainCSMAP(db.Model):
     sid=db.Column(db.Integer,primary_key=True)
-    title=db.Column(db.String(200),nullable=False)
-    content=db.Column(db.String(1000),nullable=False)
+    sname=db.Column(db.String(50),nullable=False)
+    semail=db.Column(db.String(75),nullable=False)
+    comment=db.Column(db.String(200))
     date_created=db.Column(db.DateTime,default=datetime.utcnow)
 
     def __repr__(self) -> str:
-        return f"{self.sid}/{self.title}"
+        return f"{self.sname}/{self.semail},{self.comment}"
 
 
 # database
@@ -81,10 +82,21 @@ def ccEncrypt(endpoint):
     return render_template('ccCrypto.html',endpoint=endpoint)
 
 
-@app.route('/contact')
+@app.route('/contact',methods=['GET','POST'])
 def contact():
-    allQuery=MainCSMAP.query.all()
-    return render_template('contact.html',allQuery=allQuery)
+    if request.method=='GET':
+        return render_template('contact.html')
+    elif request.method=='POST':
+        name=request.form.get('name')
+        email=request.form.get('email')
+        comment=request.form.get('comment')
+        maincsmap=MainCSMAP(sname=name,semail=email,comment=comment)
+        db.session.add(maincsmap)
+        db.session.commit()
+        return render_template('contact.html')
+        # allQuery=MainCSMAP.query.all()
+        # print(allQuery)
+
 
 
 @app.route('/about')

@@ -1,5 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,400italic);
 
-.mainSection .jumbotron{
+.mainSection .jumbotron .content-box{
   color: black;
+}
+
+.content-box p{
+  color: black;
+}
+
+.text-left{
+  text-align: left ;
+  /* color: #121c41; */
+  font-weight: 500;
+  font-size: 1.8em;
+  padding-left: 10px;
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
 }
