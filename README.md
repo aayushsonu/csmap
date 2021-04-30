@@ -45,11 +45,14 @@ If permission denied then use:
 
 5. Port Scanner
 
-    `sudo python3 csmap.py -p <port no.> <ip address>`
+    `sudo python3 csmap.py -p <port no.> -H <ip address>`
 
 6. Help
+
     `sudo python3 csmap.py -h`
+
     `sudo python3 csmap.py --help`
+
     `sudo python3 csmap.py help`
 
 

@@ -32,11 +32,14 @@ from art import *
 
 helper = colored('''
 Caeser Cipher:
-    python3 csmap.py -c <text> -k <key> 
+    #Encryption:
+        python3 csmap.py -c <text> -k <key> 
+    #Decryption:
+        python3 csmap.py -d <text> -k <key> 
 Password Generator:
     python3 csmap.py -l <length of password>
 Port Scanner:
-    python3 csmap.py -p <port no.> <ip address>
+    python3 csmap.py -p <port no.> -H <ip address>
 MAC Spoofer:
     python3 csmap.py -m
 ARP Spoofer:
