@@ -148,8 +148,10 @@ if __name__ == "__main__":
                     # spoof_arp("ip_of_victim","ip_of_router")
 
             except KeyboardInterrupt:
-                print(colored("\n[-] Stopping!!", "red"))
-                sleep(2)
+                # print(colored("\n[-] Stopping!!", "red"))
+                # sleep(2)
+                ArpSpoofer.restore(args.a,args.v)
+                ArpSpoofer.restore(args.v,args.a)
 
             except:
                 print(

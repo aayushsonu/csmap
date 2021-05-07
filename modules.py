@@ -98,7 +98,13 @@ class MacSpoofer:
 
 class ArpSpoofer:
     def __init__(self):
-        print("hey here i will create a ArpSpoofer program")
+        print("ArpSpoofer Tool")
+    
+    def restore(destination_ip,source_ip):
+        target_mac=ArpSpoofer.get_target_mac(destination_ip)
+        source_mac=ArpSpoofer.get_target_mac(source_ip)
+        packet=scapy.ARP(op=2,pdst=destination_ip,hwdst=target_mac,psrc=source_ip,hwsrc=source_mac)
+        scapy.send(packet,verbose=False)
 
     def get_target_mac(ip):
         arp_request = scapy.ARP(pdst=ip)
